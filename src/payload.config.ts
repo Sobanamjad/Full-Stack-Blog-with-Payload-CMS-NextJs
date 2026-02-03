@@ -9,6 +9,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Cars } from './collections/Cars'
 import { Manufacturers } from './collections/Manufacturers'
+import { env } from './lib/env'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,6 +20,10 @@ export default buildConfig({
         importMap: {
             baseDir: path.resolve(dirname),
         },
+        autoLogin: {
+            email: env.CMS_SEED_ADMIN_EMAIL,
+            password: env.CMS_SEED_ADMIN_EMAIL
+        }
     },
     collections: [
         Users,

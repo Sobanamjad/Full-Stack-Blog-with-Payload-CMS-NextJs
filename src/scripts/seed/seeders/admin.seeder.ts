@@ -1,7 +1,9 @@
 // src/scripts/seed/szeeders/admin.seeder.ts
 
-import { getPayload } from "payload"
-import  config  from "@/payload.config"
+import { getPayload } from 'payload'
+import config from '@/payload.config'
+import { isDuplicateError } from '../lib/is-payload-error'
+import { env } from '@/lib/env'
 
 export async function seedAdmin() {
     const payload = await getPayload({ config })
@@ -10,12 +12,16 @@ export async function seedAdmin() {
         const response = await payload.create({
             collection: 'users',
             data: {
-                email: 'test@gamil.com',
-                password: 'password',
-            }
+                email: env.CMS_SEED_ADMIN_EMAIL,
+                password: env.CMS_SEED_ADMIN_PASSWORD,
+            },
         })
         console.log('Admin created User:', response)
     } catch (error) {
-        console.error('Error seeding admin user ', error)
+        if (isDuplicateError(error, 'email')) {
+            console.log('Admin user already created')
+        } else {
+            console.error('Error seeding admin user ', JSON.stringify(error, null, 2))
+        }
     }
 }

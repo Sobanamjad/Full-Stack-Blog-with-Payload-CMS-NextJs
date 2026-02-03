@@ -22,6 +22,7 @@
         "@payloadcms/next": "3.73.0",
         "@payloadcms/richtext-lexical": "3.73.0",
         "@payloadcms/ui": "3.73.0",
+        "@t3-oss/env-nextjs": "^0.13.10",
         "cross-env": "^7.0.3",
         "dotenv": "16.4.7",
         "graphql": "^16.8.1",
@@ -29,7 +30,8 @@
         "payload": "3.73.0",
         "react": "19.2.1",
         "react-dom": "19.2.1",
-        "sharp": "0.34.2"
+        "sharp": "0.34.2",
+        "zod": "^4.3.6"
     },
     "devDependencies": {
         "@playwright/test": "1.56.1",
