@@ -1,5 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -10,6 +10,7 @@ import { Media } from './collections/Media'
 import { Cars } from './collections/Cars'
 import { Manufacturers } from './collections/Manufacturers'
 import { env } from './lib/env'
+import { Articles } from './collections/Articles/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -30,6 +31,7 @@ export default buildConfig({
          Media,
          Cars,
          Manufacturers,
+         Articles,
         //  {
         //     slug: 'cars',
         //     admin: {
@@ -52,7 +54,9 @@ export default buildConfig({
         //     ]
         //  }
         ],
-    editor: lexicalEditor(),
+    editor: lexicalEditor({
+        features: ({defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature()],
+    }),
     secret: process.env.PAYLOAD_SECRET || '',
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts'),
