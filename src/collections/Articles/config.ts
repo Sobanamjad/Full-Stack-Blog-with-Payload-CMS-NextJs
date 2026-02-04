@@ -53,6 +53,13 @@ export const Articles: CollectionConfig = {
                  ]
             },
             },
+            {
+                name: 'coverImage',
+                type: 'upload',
+                relationTo: 'media',
+                required: true,
+            
+            },
 
     ],
 }

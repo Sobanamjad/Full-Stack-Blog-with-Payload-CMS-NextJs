@@ -216,6 +216,7 @@ export interface Article {
   };
   contentSummery: string;
   readTimeInMins?: number | null;
+  coverImage: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -379,6 +380,7 @@ export interface ArticlesSelect<T extends boolean = true> {
   content?: T;
   contentSummery?: T;
   readTimeInMins?: T;
+  coverImage?: T;
   updatedAt?: T;
   createdAt?: T;
 }
