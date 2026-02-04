@@ -218,7 +218,10 @@ export interface Article {
   };
   contentSummery: string;
   readTimeInMins?: number | null;
-  coverImage: number | ArticleAuthor;
+  coverImage: number | Media;
+  author: number | ArticleAuthor;
+  status: 'Draft' | 'Published';
+  PublishedAt?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -399,6 +402,9 @@ export interface ArticlesSelect<T extends boolean = true> {
   contentSummery?: T;
   readTimeInMins?: T;
   coverImage?: T;
+  author?: T;
+  status?: T;
+  PublishedAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }
