@@ -1,6 +1,9 @@
 
 import type { CollectionConfig } from 'payload'
 import { generateSlugHook } from './hooks/generate-slug.hooks'
+import { generateContentSummeryHook } from './hooks/generate-content-summery.hook'
+
+
 
 export const Articles: CollectionConfig = {
     slug: 'articles',
@@ -22,6 +25,12 @@ export const Articles: CollectionConfig = {
                 name: 'content',
                 type: 'richText',
                 required: true,
+            },
+            {
+                name: 'contentSummery',
+                type: 'textarea',
+                required: true,
+                hooks: {beforeValidate: [generateContentSummeryHook]},
             },
 
     ],
