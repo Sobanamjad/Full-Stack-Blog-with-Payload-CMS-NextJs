@@ -72,6 +72,7 @@ export interface Config {
     cars: Car;
     Manufacturers: Manufacturer;
     articles: Article;
+    'article-authors': ArticleAuthor;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     cars: CarsSelect<false> | CarsSelect<true>;
     Manufacturers: ManufacturersSelect<false> | ManufacturersSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    'article-authors': ArticleAuthorsSelect<false> | ArticleAuthorsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -216,7 +218,19 @@ export interface Article {
   };
   contentSummery: string;
   readTimeInMins?: number | null;
-  coverImage: number | Media;
+  coverImage: number | ArticleAuthor;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-authors".
+ */
+export interface ArticleAuthor {
+  id: number;
+  name: string;
+  avatar: number | Media;
+  role: 'Staff Writter' | 'Guest Writter' | 'Flo Rida' | 'Contributor' | 'Editor';
   updatedAt: string;
   createdAt: string;
 }
@@ -263,6 +277,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'articles';
         value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'article-authors';
+        value: number | ArticleAuthor;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -381,6 +399,17 @@ export interface ArticlesSelect<T extends boolean = true> {
   contentSummery?: T;
   readTimeInMins?: T;
   coverImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-authors_select".
+ */
+export interface ArticleAuthorsSelect<T extends boolean = true> {
+  name?: T;
+  avatar?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
 }

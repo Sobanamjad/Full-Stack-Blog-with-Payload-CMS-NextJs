@@ -11,6 +11,7 @@ import { Cars } from './collections/Cars'
 import { Manufacturers } from './collections/Manufacturers'
 import { env } from './lib/env'
 import { Articles } from './collections/Articles/config'
+import { ArticleAuthors } from './collections/ArticleAuthors'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,6 +33,7 @@ export default buildConfig({
          Cars,
          Manufacturers,
          Articles,
+         ArticleAuthors,
         //  {
         //     slug: 'cars',
         //     admin: {
