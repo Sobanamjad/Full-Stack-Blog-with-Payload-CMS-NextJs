@@ -1,3 +1,4 @@
+//  src/payload.config.ts
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
@@ -6,7 +7,7 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
 import { Users } from './collections/Users'
-import { Media } from './collections/Media'
+import { Media } from './collections/Media/config'
 import { Cars } from './collections/Cars'
 import { Manufacturers } from './collections/Manufacturers'
 import { env } from './lib/env'
@@ -24,16 +25,16 @@ export default buildConfig({
         },
         autoLogin: {
             email: env.CMS_SEED_ADMIN_EMAIL,
-            password: env.CMS_SEED_ADMIN_EMAIL
-        }
+            password: env.CMS_SEED_ADMIN_EMAIL,
+        },
     },
     collections: [
         Users,
-         Media,
-         Cars,
-         Manufacturers,
-         Articles,
-         ArticleAuthors,
+        Media,
+        Cars,
+        Manufacturers,
+        Articles,
+        ArticleAuthors,
         //  {
         //     slug: 'cars',
         //     admin: {
@@ -55,9 +56,9 @@ export default buildConfig({
         //         }
         //     ]
         //  }
-        ],
+    ],
     editor: lexicalEditor({
-        features: ({defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature()],
+        features: ({ defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature()],
     }),
     secret: process.env.PAYLOAD_SECRET || '',
     typescript: {
