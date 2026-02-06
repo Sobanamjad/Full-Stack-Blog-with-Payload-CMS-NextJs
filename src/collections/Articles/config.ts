@@ -1,7 +1,9 @@
+//src/collections/articles/config.ts
 import type { CollectionConfig } from 'payload'
 import { generateSlugHook } from './hooks/generate-slug.hooks'
 import { generateContentSummeryHook } from './hooks/generate-content-summery.hook'
 import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext'
+import { STATUS_OPTIONS } from './constant'
 
 export const Articles: CollectionConfig = {
     slug: 'articles',
@@ -67,8 +69,8 @@ export const Articles: CollectionConfig = {
             name: 'status',
             type: 'select',
             required: true,
-            options: ['Draft', 'Published'],
-            defaultValue: 'Draft',
+            options: Object.values(STATUS_OPTIONS),
+            defaultValue: STATUS_OPTIONS.DRAFT,
         },
         {
             name: 'PublishedAt',
@@ -76,8 +78,8 @@ export const Articles: CollectionConfig = {
             required: true,
             admin: {
                 condition: (data) => data?.status === 'Published',
-                date: { pickerAppearance: 'dayAndTime'},
-            }
+                date: { pickerAppearance: 'dayAndTime' },
+            },
         },
     ],
 }
