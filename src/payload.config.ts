@@ -12,7 +12,7 @@ import { Cars } from './collections/Cars'
 import { Manufacturers } from './collections/Manufacturers'
 import { env } from './lib/env'
 import { Articles } from './collections/Articles/config'
-import { ArticleAuthors } from './collections/ArticleAuthors'
+import { ArticleAuthors } from './collections/ArticleAuthors/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

@@ -37,7 +37,6 @@ export const Media: CollectionConfig = {
                         `No blur generated (empty base64) for ${data.filename || 'new file'}`,
                     )
                 }
-
                 return data
             },
         ],
